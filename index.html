@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Ultra-Obnoxious Template - Exit Threat Edition</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #fff;
+    }
+
+    /* ---------- PERSISTENT APP DOWNLOAD BANNER ---------- */
+    .app-download-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ffcc00;
+      color: #000;
+      padding: 12px 20px;
+      z-index: 2000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      border-bottom: 3px solid #e6b800;
+      font-weight: bold;
+    }
+
+    .app-banner-content {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .app-icon {
+      font-size: 28px;
+    }
+
+    .app-banner-btns {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-download {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-download:hover {
+      background-color: #218838;
+    }
+
+    .btn-decline {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-decline:hover {
+      background-color: #c82333;
+    }
+
+    /* ---------- ANNOYING FLASHING UPSELL BANNER ---------- */
+    .announcement-bar {
+      margin-top: 55px;
+      background-color: #ff0000;
+      color: yellow;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 18px;
+      animation: blink 1s infinite alternate;
+      cursor: pointer;
+    }
+
+    @keyframes blink {
+      0% { background-color: #ff0000; color: #ffff00; }
+      100% { background-color: #ff00ff; color: #00ffff; }
+    }
+
+    /* ---------- SIDE NAVIGATION ---------- */
+    .sidenav {
+      height: 100%;
+      width: 200px;
+      position: fixed;
+      z-index: 1;
+      top: 95px;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+    }
+
+    .sidenav a {
+      color: white;
+      padding: 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .sidenav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+	
+    .sidenav .brand {
+      font-size: 20px;
+      font-weight: bold;
+      background-color: #111;
+    }
+
+    /* ---------- TOP NAVIGATION ---------- */
+    .topnav {
+      overflow: hidden;
+      background-color: #111;
+      margin-left: 200px;
+    }
+
+    .topnav a {
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    /* ---------- MAIN CONTENT AREA ---------- */
+    .content {
+      margin-left: 200px;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+
+    /* ---------- RIGGED GAMBLING SECTION ---------- */
+    .casino-box {
+      border: 4px dashed #ff0055;
+      background: #222;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .slot-display {
+      font-size: 32px;
+      letter-spacing: 10px;
+      background: #000;
+      padding: 15px;
+      border: 2px solid gold;
+      border-radius: 6px;
+      margin: 15px 0;
+      color: #00ff00;
+      font-family: monospace;
+    }
+
+    .spin-btn {
+      background: gold;
+      color: #000;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-transform: uppercase;
+      box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
+    }
+
+    .spin-btn:hover {
+      background: #ffd700;
+      transform: scale(1.05);
+    }
+
+    .result-msg {
+      margin-top: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #ff4d4d;
+      min-height: 24px;
+    }
+
+    /* Deal / Upsell Cards Grid */
+    .deals-grid {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .deal-card {
+      border: 3px dashed red;
+      padding: 15px;
+      background: #fff3cd;
+      text-align: center;
+      flex: 1;
+    }
+
+    .deal-card button {
+      background: red;
+      color: white;
+      font-weight: bold;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer {
+      margin-left: 200px;
+      background-color: #f1f1f1;
+      padding: 10px 20px;
+      border-top: 1px solid #ccc;
+    }
+
+    /* ---------- 5-SECOND COOKIE POPUP ---------- */
+    .cookie-popup {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .cookie-popup-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 340px;
+      text-align: center;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .btn-group {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .btn-yes {
+      padding: 10px 24px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-no {
+      padding: 10px 24px;
+      background-color: #cccccc;
+      color: #666666;
+      border: 1px solid #b3b3b3;
+      border-radius: 4px;
+      cursor: not-allowed;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    /* ---------- FORCED SUBSCRIPTION WALL MODAL ---------- */
+    .sub-wall {
+      display: flex;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .sub-wall-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 400px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+
+    .sub-wall-content h2 {
+      color: #d9534f;
+      margin-top: 0;
+    }
+
+    .sub-wall-content input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .sub-wall-content button {
+      width: 100%;
+      padding: 12px;
+      background: #28a745;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* ---------- EXIT INTENT SECURITY THREAT MODAL ---------- */
+    .exit-threat-modal {
+      display: none;
+      position: fixed;
+      z-index: 3000; /* Priority over all modals */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(180, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .exit-threat-content {
+      background-color: #111;
+      color: #fff;
+      border: 4px solid red;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 450px;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+    }
+
+    .exit-threat-content h2 {
+      color: #ff3333;
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    .ip-box {
+      background-color: #222;
+      color: #00ff00;
+      font-family: monospace;
+      font-size: 18px;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 15px 0;
+      border: 1px solid #444;
+    }
+
+    .btn-fix {
+      width: 100%;
+      padding: 14px;
+      background: #ff0000;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-transform: uppercase;
+      animation: pulse 0.8s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.03); }
+    }
+
+    /* ---------- FAKE AI CHAT WIDGET ---------- */
+    .chat-widget {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 300px;
+      background-color: white;
+      border: 2px solid #007bff;
+      border-radius: 10px 10px 0 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      z-index: 998;
+    }
+
+    .chat-header {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      font-weight: bold;
+      border-radius: 8px 8px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-body {
+      height: 180px;
+      padding: 10px;
+      overflow-y: auto;
+      background-color: #f4f4f9;
+      font-size: 13px;
+    }
+
+    .chat-msg {
+      background-color: #e1f5fe;
+      padding: 8px;
+      border-radius: 5px;
+      margin-bottom: 8px;
+    }
+
+    .chat-footer {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+
+    .chat-footer input {
+      flex: 1;
+      border: none;
+      padding: 8px;
+    }
+
+    .chat-footer button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media screen and (max-width: 600px) {
+      .sidenav {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+      }
+      .sidenav a {
+        float: left;
+        padding: 12px;
+      }
+      .topnav,
+      .content,
+      .footer {
+        margin-left: 0;
+      }
+      .deals-grid {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Persistent App Download Banner at Top -->
+  <div id="appBanner" class="app-download-banner">
+    <div class="app-banner-content">
+      <span class="app-icon">📱</span>
+      <span>Our website works 10x better on the <strong>SchitWebsite Mobile App</strong>! Download for a smoother experience.</span>
+    </div>
+    <div class="app-banner-btns">
+      <button class="btn-download" onclick="triggerSubscription()">DOWNLOAD APP</button>
+      <button class="btn-decline" onclick="declineApp()">DECLINE</button>
+    </div>
+  </div>
+
+  <!-- Flashing Upsell Banner -->
+  <div class="announcement-bar" onclick="triggerSubscription()">
+    🔥 LIMITED TIME OFFER: GET ULTRA VIP ACCESS FOR $99.99/MONTH! CLICK HERE NOW! 🔥
+  </div>
+
+  <!-- Fixed Side Navigation -->
+  <div class="sidenav">
+    <a href="project2.html" class="brand">Home</a>
+    <a href="#">Upgrade Plan</a>
+    <a href="#">Buy Coins</a>
+    <a href="#">Special Offers</a>
+  </div>
+
+  <!-- Top Navigation -->
+  <div class="topnav">
+    <a href="#">Daily Deals</a>
+    <a href="#">Flash Sale</a>
+    <a href="#">VIP Lounge</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <h2>Welcome to our Page</h2>
+    <p>Please purchase a pass or try your luck below to view regular articles.</p>
+    
+    <!-- Rigged Gambling Section -->
+    <div class="casino-box">
+      <h3>🎰 SPIN TO WIN FREE SITE ACCESS! 🎰</h3>
+      <p style="font-size: 12px; color: #aaa;">Cost per spin: $4.99 (Billed directly to your browser session)</p>
+      
+      <div class="slot-display" id="slotDisplay">❓ | ❓ | ❓</div>
+      
+      <button class="spin-btn" id="spinBtn" onclick="spinSlots()">SPIN NOW ($4.99)</button>
+      
+      <div class="result-msg" id="resultMsg"></div>
+    </div>
+
+    <!-- Aggressive Sales Cards -->
+    <h3>Recommended Add-Ons For You:</h3>
+    <div class="deals-grid">
+      <div class="deal-card">
+        <h4>Ad-Block Remover Block</h4>
+        <p>Only $19.99/mo</p>
+        <button onclick="triggerSubscription()">BUY NOW</button>
+      </div>
+      <div class="deal-card">
+        <h4>Premium Fast Scroll</h4>
+        <p>Only $9.99/mo</p>
+        <button onclick="triggerSubscription()">BUY NOW</button>
+      </div>
+      <div class="deal-card">
+        <h4>Extended Session Pass</h4>
+        <p>Only $29.99/mo</p>
+        <button onclick="triggerSubscription()">BUY NOW</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>© 2026 Enterprise Corp | <a href="project2privacy.html">Privacy Policy</a> | <a href="project2tos.html">Terms of Service</a></p>
+  </div>
+
+  <!-- Forced Subscription Wall Modal -->
+  <div id="subWall" class="sub-wall">
+    <div class="sub-wall-content">
+      <h2>⚠️ VIP Access Required</h2>
+      <p>To access this webpage, you must subscribe to our Pro Ultra Tier ($49.99/week, billed automatically).</p>
+      <input type="email" placeholder="Enter Credit Card Email" required>
+      <input type="text" placeholder="Credit Card Number" required>
+      <button onclick="closeSubWall()">SUBSCRIBE & CONTINUE</button>
+      <p style="font-size: 10px; color: #777; margin-top: 10px;">By clicking subscribe, you agree to non-refundable weekly charges.</p>
+    </div>
+  </div>
+
+  <!-- Exit Intent Security Threat Modal -->
+  <div id="exitThreatModal" class="exit-threat-modal">
+    <div class="exit-threat-content">
+      <h2>⚠️ WARNING ⚠️</h2>
+      <p id="threatMsg">DONT TRY TO LIVE, I KNOW WHERE YOU LIVE. WE HAVE <strong>47 ARMED HITMEN</strong> NEAR YOUR LOCATION!</p>
+      <div class="ip-box" id="userIpDisplay">IP: Fetching your location...</div>
+      <p style="font-size: 12px; color: #ff9999;">You have a family, you have working kneecaps. You want to keep them right?</p>
+      <button class="btn-fix" onclick="resolveThreats()">PURCHASE PROTECTION NOW</button>
+    </div>
+  </div>
+
+  <!-- Periodic Cookie Popup Modal -->
+  <div id="cookieModal" class="cookie-popup">
+    <div class="cookie-popup-content">
+      <h3 id="popupTitle">Cookie & Privacy Notice</h3>
+      <p id="popupMessage">We use cookies to collect your data. Do you accept?</p>
+      <div class="btn-group">
+        <button class="btn-yes" onclick="closeCookiePopup()">Yes</button>
+        <button class="btn-no" disabled>No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fake AI Assistant Chat Widget -->
+  <div class="chat-widget">
+    <div class="chat-header">
+      <span>🤖 AI Support Assistant</span>
+      <small style="font-size: 10px;">Online</small>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="chat-msg"><strong>AI Assistant:</strong> Hi there! I noticed you haven't bought our Premium Pass yet. Can I help you select a payment method?</div>
+    </div>
+    <div class="chat-footer">
+      <input type="text" id="chatInput" placeholder="Type a response...">
+      <button onclick="sendChatMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    let userIP = "192.168.1.101";
+
+    // Fetch user's actual public IP address
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+        userIP = data.ip;
+      })
+      .catch(() => {
+        userIP = "192.168.1.101 (Protected)";
+      });
+
+    // ---------- EXIT-INTENT DETECTION ----------
+    let exitTriggered = false;
+
+    document.addEventListener("mouseleave", function (e) {
+      // Triggers if mouse moves out towards the top of the browser window
+      if (e.clientY <= 10 && !exitTriggered) {
+        exitTriggered = true;
+        
+        const randomThreats = Math.floor(Math.random() * 87) + 12; // 12-98 random threats
+        document.getElementById("threatMsg").innerHTML = `You should probably buy something, we found <strong>${randomThreats} goons</strong> near <strong>${userIP}</strong>!`;
+        document.getElementById("userIpDisplay").innerText = `DETECTED IP: ${randomThreats}.${randomThreats}.${randomThreats}.${randomThreats}`;
+        
+        document.getElementById("exitThreatModal").style.display = "flex";
+      }
+    });
+
+    function resolveThreats() {
+      document.getElementById("exitThreatModal").style.display = "none";
+      triggerSubscription();
+    }
+
+    // ---------- REAPPEARING APP BANNER MECHANIC ----------
+    function declineApp() {
+      const banner = document.getElementById("appBanner");
+      banner.style.display = "none";
+      
+      setTimeout(() => {
+        banner.style.display = "flex";
+      }, 1500);
+    }
+
+    // ---------- RIGGED GAMBLING MECHANIC ----------
+    const terribleOutcomes = [
+      { reels: "💩 | 💩 | 💀", msg: "YOU LOST! Penalty Fee Applied: +$14.99 added to your monthly bill." },
+      { reels: "🍋 | 🍋 | 💣", msg: "SO CLOSE! You lost your spin fee AND unlocked double popups for 10 minutes!" },
+      { reels: "💸 | 💸 | 💩", msg: "BANKRUPT! You have been opted into our Ultra Marketing Email List." },
+      { reels: "💀 | 💀 | 💀", msg: "CRITICAL FAILURE! Ad frequency increased by 300%!" }
+    ];
+
+    let spinIndex = 0;
+
+    function spinSlots() {
+      const display = document.getElementById("slotDisplay");
+      const msg = document.getElementById("resultMsg");
+      const btn = document.getElementById("spinBtn");
+
+      btn.disabled = true;
+      msg.innerText = "Spinning...";
+      
+      let count = 0;
+      const spinInterval = setInterval(() => {
+        const tempIcons = ["🍋", "🔔", "💎", "7️⃣", "💩", "💀"];
+        display.innerText = `${tempIcons[Math.floor(Math.random()*6)]} | ${tempIcons[Math.floor(Math.random()*6)]} | ${tempIcons[Math.floor(Math.random()*6)]}`;
+        count++;
+
+        if (count > 15) {
+          clearInterval(spinInterval);
+          
+          const outcome = terribleOutcomes[spinIndex % terribleOutcomes.length];
+          spinIndex++;
+          
+          display.innerText = outcome.reels;
+          msg.innerText = outcome.msg;
+          btn.disabled = false;
+
+          setTimeout(() => {
+            triggerSubscription();
+          }, 1500);
+        }
+      }, 100);
+    }
+
+    // ---------- FORCED SUBSCRIPTION WALL ----------
+    function triggerSubscription() {
+      document.getElementById("subWall").style.display = "flex";
+    }
+
+    function closeSubWall() {
+      document.getElementById("subWall").style.display = "none";
+    }
+
+    // ---------- PERIODIC COOKIE POPUP ----------
+    const popupMessages = [
+      { title: "Cookie Consent", text: "We use tracking cookies. Do you accept?" },
+      { title: "Privacy Update", text: "Accept updated privacy terms to proceed." },
+      { title: "Location Tracking", text: "Allow location tracking for custom ads?" },
+      { title: "Data Sharing", text: "We share user metrics with partners. Accept?" }
+    ];
+
+    function showCookiePopup() {
+      const modal = document.getElementById("cookieModal");
+      const titleEl = document.getElementById("popupTitle");
+      const msgEl = document.getElementById("popupMessage");
+
+      const randomNotice = popupMessages[Math.floor(Math.random() * popupMessages.length)];
+      titleEl.innerText = randomNotice.title;
+      msgEl.innerText = randomNotice.text;
+
+      modal.style.display = "block";
+    }
+
+    function closeCookiePopup() {
+      document.getElementById("cookieModal").style.display = "none";
+    }
+
+    // ---------- FAKE AI CHAT AUTOMATION ----------
+    const aiSpamMessages = [
+      "Still there? Our 50% discount on the Pro Pass expires in 2 minutes!",
+      "I see you looking at our page. Would you like me to auto-renew your VIP subscription?",
+      "Need help entering your credit card details?",
+      "Why not try downloading the SchitWebsite mobile app?"
+    ];
+    let aiMsgIndex = 0;
+
+    function autoChatSpam() {
+      const chatBody = document.getElementById("chatBody");
+      if (aiMsgIndex < aiSpamMessages.length) {
+        const msgDiv = document.createElement("div");
+        msgDiv.className = "chat-msg";
+        msgDiv.innerHTML = `<strong>AI Assistant:</strong> ${aiSpamMessages[aiMsgIndex]}`;
+        chatBody.appendChild(msgDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+        aiMsgIndex++;
+      }
+    }
+
+    function sendChatMessage() {
+      const input = document.getElementById("chatInput");
+      const chatBody = document.getElementById("chatBody");
+      
+      if (input.value.trim() !== "") {
+        const userDiv = document.createElement("div");
+        userDiv.className = "chat-msg";
+        userDiv.style.backgroundColor = "#e2e2e2";
+        userDiv.innerHTML = `<strong>You:</strong> ${input.value}`;
+        chatBody.appendChild(userDiv);
+
+        input.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        setTimeout(() => {
+          const botDiv = document.createElement("div");
+          botDiv.className = "chat-msg";
+          botDiv.innerHTML = `<strong>AI Assistant:</strong> Thanks for reaching out! To proceed with that, please complete your VIP Subscription purchase first.`;
+          chatBody.appendChild(botDiv);
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }, 1000);
+      }
+    }
+
+    // ---------- PAGE TIMERS ----------
+    window.onload = function() {
+      setInterval(showCookiePopup, 5000);
+      setInterval(autoChatSpam, 7000);
+    };
+  </script>
+
+</body>
+</html>
